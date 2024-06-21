@@ -8,9 +8,9 @@ spring:
         globally_quoted_identifiers: true
         dialect: org.hibernate.dialect.MySQLDialect
   datasource:
-    url: jdbc:mysql://localhost/drcomputer
+    url: jdbc:mysql://root:dUZopsKESdOSwSqvrFDpGsvZLrtkKhnD@monorail.proxy.rlwy.net:21959/railway
     username: root
-    password:
+    password: dUZopsKESdOSwSqvrFDpGsvZLrtkKhnD
     driver-class-name: com.mysql.cj.jdbc.Driver
   mail:
     host: smtp.gmail.com
@@ -36,4 +36,4 @@ cloudinary:
   api-secret: ZX6B1Vdw7hGiqRnewuJk0soiygw
 
 server:
-   url: ${SERVER_URL:http://localhost:8080}
+   url: ${SERVER_URL:https://server-laptop-dfs4.onrender.com}
