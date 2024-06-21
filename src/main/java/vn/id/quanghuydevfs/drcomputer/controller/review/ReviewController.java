@@ -19,7 +19,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/review")
-@CrossOrigin
+@CrossOrigin("*")
 public class ReviewController {
     @Autowired
     public ReviewService reviewService;

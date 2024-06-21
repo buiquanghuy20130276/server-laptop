@@ -3,6 +3,7 @@ package vn.id.quanghuydevfs.drcomputer.dto.blog;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
@@ -13,5 +14,5 @@ public class BlogDto {
     private String author;
     private String content;
     private String img;
-    private Date dataCreate;
+    private LocalDateTime dataCreate;
 }

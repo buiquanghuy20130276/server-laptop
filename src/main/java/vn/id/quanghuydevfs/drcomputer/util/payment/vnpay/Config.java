@@ -1,6 +1,7 @@
 package vn.id.quanghuydevfs.drcomputer.util.payment.vnpay;
 
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -11,8 +12,10 @@ import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
 public class Config {
+    @Value("${server.url}")
+    private static String serverUrl;
     public static String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-    public static String vnp_ReturnUrl = "http://localhost:3000/payment-result";
+    public static String vnp_ReturnUrl = serverUrl+"/payment-result";
     public static String vnp_TmnCode = "3RHOEYNC";
     public static String secretKey = "NGNLDRJAWEHXWZNPCZTTRWFYYUVOWHGC";
     public static String vnp_ApiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";

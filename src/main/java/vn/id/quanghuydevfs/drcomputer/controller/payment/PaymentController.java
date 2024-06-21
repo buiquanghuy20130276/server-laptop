@@ -1,5 +1,7 @@
 package vn.id.quanghuydevfs.drcomputer.controller.payment;
 
+import com.nimbusds.jose.shaded.gson.JsonObject;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,12 +17,12 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 @RestController
-@CrossOrigin
+@CrossOrigin("*")
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/payment")
 public class PaymentController {
     @PostMapping("/create_payment")
-    public ResponseEntity<?> createPayment(@RequestBody PaymentReqDTO req) throws UnsupportedEncodingException {
+    public ResponseEntity<?> createPayment(@RequestBody PaymentReqDTO req, HttpServletRequest request) throws UnsupportedEncodingException {
         String vnp_Version = "2.1.0";
         String vnp_Command = "pay";
         String orderType = "other";
@@ -28,7 +30,7 @@ public class PaymentController {
         String bankCode = "NCB";
 
         String vnp_TxnRef = String.valueOf(req.getOrderInfo());
-        String vnp_IpAddr = "127.0.0.1";
+        String vnp_IpAddr = Config.getIpAddress(request);
 
         String vnp_TmnCode = Config.vnp_TmnCode;
 

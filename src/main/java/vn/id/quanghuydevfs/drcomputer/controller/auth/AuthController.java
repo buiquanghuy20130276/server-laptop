@@ -1,12 +1,11 @@
 package vn.id.quanghuydevfs.drcomputer.controller.auth;
 
+import jakarta.mail.*;
 import jakarta.mail.internet.MimeMessage;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -27,8 +26,6 @@ import vn.id.quanghuydevfs.drcomputer.service.AuthService;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-
-import jakarta.mail.*;
 
 @RestController
 @CrossOrigin("*")
@@ -97,7 +94,7 @@ public class AuthController {
 
         } catch (IOException ex) {
             model.addAttribute("error", ex.getMessage());
-        } catch (  MessagingException e) {
+        } catch (MessagingException e) {
             model.addAttribute("error", "Error while sending email");
         }
 

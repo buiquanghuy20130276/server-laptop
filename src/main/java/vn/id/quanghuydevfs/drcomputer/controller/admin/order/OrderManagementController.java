@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/order-management/order")
-@PreAuthorize("hasAnyRole('ADMIN','MANAGER')")
+@PreAuthorize("hasRole('ADMIN')")
 @RequiredArgsConstructor
 @CrossOrigin("*")
 public class OrderManagementController {

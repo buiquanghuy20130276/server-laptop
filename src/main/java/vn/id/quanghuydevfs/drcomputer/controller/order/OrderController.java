@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@CrossOrigin
+@CrossOrigin("*")
 @RequestMapping("/api/v1/order")
 public class OrderController {
     @Autowired
@@ -56,7 +56,7 @@ public class OrderController {
         return ResponseEntity.noContent().build();
     }
 
-    @CrossOrigin(origins = "*")
+    
     @GetMapping("/my_order/{email}")
     public ResponseEntity<?> myOrder(@PathVariable String email) {
         List<Order> orders = service.getOrdersByUserEmail(email);

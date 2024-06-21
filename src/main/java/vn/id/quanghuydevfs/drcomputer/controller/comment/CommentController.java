@@ -16,7 +16,7 @@ import vn.id.quanghuydevfs.drcomputer.service.ProductService;
 import java.util.ArrayList;
 import java.util.List;
 
-@CrossOrigin
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor

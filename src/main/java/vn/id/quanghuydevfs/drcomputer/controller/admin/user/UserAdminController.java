@@ -3,6 +3,7 @@ package vn.id.quanghuydevfs.drcomputer.controller.admin.user;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import vn.id.quanghuydevfs.drcomputer.controller.auth.AuthenticationResponse;
 import vn.id.quanghuydevfs.drcomputer.dto.user.DeleteUserRequest;
@@ -16,8 +17,8 @@ import java.util.Optional;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/management/users")
-@CrossOrigin(origins = "http://localhost:3000")
-//@PreAuthorize("hasRole('ADMIN')")
+@CrossOrigin("*")
+@PreAuthorize("hasRole('ADMIN')")
 public class UserAdminController {
     private final UserService userService;
 

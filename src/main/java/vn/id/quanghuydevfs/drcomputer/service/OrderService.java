@@ -162,7 +162,7 @@ public class OrderService {
         Optional<User> user = userRepository.findByEmail(email);
         if (user.isPresent()) {
             if (status == null || status.equalsIgnoreCase("all")) {
-                return repository.findAll();
+                return repository.findAllByUserEmail(email);
             }
             try {
                 StatusOrder statusOrder = StatusOrder.valueOf(status.toLowerCase());
@@ -228,6 +228,9 @@ public class OrderService {
                 allDelivered = false;
                 StatusOrder nextStatus = getNextStatus(order.getStatus());
                 if (nextStatus != null) {
+                    if(nextStatus.equals(StatusOrder.delivered)){
+                        order.setPaied(true);
+                    }
                     order.setStatus(nextStatus);
                     repository.save(order);
                 }

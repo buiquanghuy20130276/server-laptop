@@ -8,6 +8,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import vn.id.quanghuydevfs.drcomputer.model.product.Category;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -30,7 +32,7 @@ public class Blog {
     @Column(length = 65500)
     private String content;
     private String img;
-    private Date dataCreate;
+    private LocalDateTime dataCreate;
 
 
 }

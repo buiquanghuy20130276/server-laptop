@@ -17,6 +17,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -42,7 +44,6 @@ public class BlogService {
     }
 
     public Blog add(BlogDto blogDto) {
-        Date currentDate = new Date();
         var category = categoryService.getCategoryByValue(blogDto.getCategory());
         var newBlog = Blog.builder()
                 .title(blogDto.getTitle())
@@ -51,7 +52,7 @@ public class BlogService {
                 .author(blogDto.getAuthor())
                 .content(blogDto.getContent())
                 .img(blogDto.getImg())
-                .dataCreate(currentDate)
+                .dataCreate(LocalDateTime.now())
                 .build();
         blogRepository.save(newBlog);
         // Lưu bài blog mới vào cơ sở dữ liệu và trả về kết quả
@@ -74,8 +75,6 @@ public class BlogService {
             Category category = categoryService.getCategoryByValue(blogDto.getCategory());
             if (category != null) {
                 blog.setCategory(category);
-            } else {
-                // Handle category not found, throw an exception or create a new category
             }
 
             return blogRepository.save(blog);
@@ -111,8 +110,6 @@ public class BlogService {
         Iterator<Row> rowIterator = sheet.iterator();
         rowIterator.next(); // Bỏ qua hàng đầu tiên (header)
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
         while (rowIterator.hasNext()) {
             Row row = rowIterator.next();
 
@@ -124,7 +121,7 @@ public class BlogService {
             String content = row.getCell(5).getStringCellValue();
             String img = row.getCell(6).getStringCellValue();
             String dateCreateString = row.getCell(7).getStringCellValue();
-            Date dateCreate = dateFormat.parse(dateCreateString); // Chuyển đổi chuỗi ngày thành đối tượng Date
+            LocalDateTime dateCreate = LocalDateTime.parse(dateCreateString); // Chuyển đổi chuỗi ngày thành đối tượng Date
 
             // Tìm hoặc tạo mới Category dựa trên tên
             Category category = categoryService.getCategoryByName(categoryName);
